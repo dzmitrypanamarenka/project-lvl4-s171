@@ -2,17 +2,11 @@ install:
 	npm install
 
 start:
-	npm run babel-node -- src/bin/ploader.js
-
-publish:
-	npm publish
+	rm -rf dist public
+	npm run start
 
 lint:
-	npm run eslint
-
-build:
-	rm -rf dist
-	npm run build
+	npm run eslint src/**/*.js
 
 test:
 	npm test

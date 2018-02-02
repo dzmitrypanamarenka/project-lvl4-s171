@@ -3,13 +3,17 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8"
+  },
   "scripts": {
+    "babel": "babel",
     "test": "jest",
     "watch": "jest --watch",
-    "build": "NODE_ENV=production babel src --out-dir dist --source-maps inline",
     "babel-node": "babel-node",
-    "prepublish": "npm run build",
-    "eslint": "eslint src/**/*.js __tests__/**/*.js"
+    "eslint": "eslint",
+    "webpack": "webpack",
+    "start": "webpack && babel src --out-dir dist --copy-files && babel-node dist/bin/server"
   },
   "repository": {
     "type": "git",
@@ -22,8 +26,38 @@
   },
   "homepage": "https://github.com/dzmitrypanamarenka/project-lvl4-s163#readme",
   "dependencies": {
+    "autoprefixer": "^7.2.5",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "bootstrap": "^4.0.0",
+    "css-loader": "^0.28.9",
+    "dotenv": "^5.0.0",
+    "jquery": "^1.12.4",
+    "jquery-ujs": "^1.2.2",
     "koa": "^2.4.1",
-    "pg": "^7.4.1",
+    "koa-logger": "^3.1.0",
+    "koa-pug": "^3.0.0-2",
+    "koa-router": "^7.4.0",
+    "koa-static": "^4.0.2",
+    "pg": "7.4.1",
+    "popper.js": "^1.13.0",
+    "postcss-loader": "^2.1.0",
+    "rollbar": "^2.3.8",
+    "sqlite3": "^3.1.13",
+    "style-loader": "^0.20.1",
     "webpack": "^3.10.0"
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.0.1",
+    "eslint": "^4.17.0",
+    "eslint-config-airbnb-base": "^12.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "jest": "^21.2.1",
+    "nodemon": "^1.14.12"
   }
 }
