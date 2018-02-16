@@ -15,8 +15,8 @@
     "webpack": "webpack",
     "nodemon": "nodemon",
     "gulp": "gulp",
-    "start": "nodemon --watch ./src --ext js,pug --exec npm run gulp server",
-    "build": "webpack && babel src --out-dir dist --copy-files && babel-node dist/bin/server"
+    "build": "nodemon --watch ./src --ext js,pug --exec npm run gulp server",
+    "start": "webpack && babel src --out-dir dist --copy-files && babel-node dist/bin/server"
   },
   "repository": {
     "type": "git",
