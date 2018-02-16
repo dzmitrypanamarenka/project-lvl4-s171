@@ -13,7 +13,10 @@
     "babel-node": "babel-node",
     "eslint": "eslint",
     "webpack": "webpack",
-    "start": "webpack && babel src --out-dir dist --copy-files && babel-node dist/bin/server"
+    "nodemon": "nodemon",
+    "gulp": "gulp",
+    "start": "nodemon --watch ./src --ext js,pug --exec npm run gulp server",
+    "build": "webpack && babel src --out-dir dist --copy-files"
   },
   "repository": {
     "type": "git",
@@ -37,6 +40,8 @@
     "bootstrap": "^4.0.0",
     "css-loader": "^0.28.9",
     "dotenv": "^5.0.0",
+    "gulp": "^3.9.1",
+    "gulp-util": "^3.0.8",
     "jquery": "^1.12.4",
     "jquery-ujs": "^1.2.2",
     "koa": "^2.4.1",
