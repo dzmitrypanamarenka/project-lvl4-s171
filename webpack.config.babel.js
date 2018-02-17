@@ -5,13 +5,14 @@ const NODE_ENV = process.env.NODE_ENV || 'development';
 
 export default () => ({
   entry: {
-    index: './bootstrap',
-    vendor: ['babel-polyfill', 'jquery', 'jquery-ujs', 'popper.js', 'bootstrap'],
+    'public/assets/bootstrap': './bootstrap',
+    'init': './src/frontend/index.jsx',
+    'public/assets/vendor': ['babel-polyfill', 'jquery', 'jquery-ujs', 'popper.js', 'bootstrap'],
   },
   output: {
-    path: path.join(__dirname, 'public', 'assets'),
-    filename: 'application.js',
-    publicPath: '/assets/',
+    path: path.join(__dirname, 'dist'),
+    filename: '[name].js',
+    publicPath: '/assets/'
   },
   module: {
     rules: [
@@ -24,6 +25,10 @@ export default () => ({
         test: /\.css$/,
         use: ['style-loader', 'css-loader'],
       },
+      { test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: 'babel-loader'
+      },
     ],
   },
   plugins: [
@@ -34,17 +39,16 @@ export default () => ({
       Popper: ['popper.js', 'default'],
     }),
     new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      filename: 'vendor.js',
+      name: 'public/assets/vendor',
       minChunks: Infinity,
     }),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false,
-        drop_console: true,
-        unsafe: true,
-      },
-    }),
+    // new webpack.optimize.UglifyJsPlugin({
+    //   compress: {
+    //     warnings: false,
+    //     drop_console: true,
+    //     unsafe: true,
+    //   },
+    // }),
   ],
   devtool: NODE_ENV === 'development' ? 'cheap-inline-module-source-map' : 'source-map',
 });
