@@ -9,11 +9,12 @@
   "scripts": {
     "test": "jest",
     "test:watch": "jest --watch",
-    "tsc": "tsc",
     "eslint": "eslint",
-    "server": "nodemon --watch ./src --ext js,pug --exec babel-node ./src/bin/server",
-    "build": "babel src --out-dir dist --copy-files --source-maps inline",
-    "start": "npm-run-all build server"
+    "clean-copy": "rm -rf dist && copyfiles -u 1 src/views/**/*.pug dist/",
+    "server": "nodemon --watch ./src --ext ts,pug --exec babel-node ./server",
+    "build:js": "babel src --out-dir dist --copy-files --source-maps inline",
+    "build:ts": "npm run clean-copy && tsc",
+    "start": "npm-run-all build:ts server"
   },
   "repository": {
     "type": "git",
@@ -26,12 +27,14 @@
   },
   "homepage": "https://github.com/dzmitrypanamarenka/project-lvl4-s163#readme",
   "dependencies": {
+    "@types/debug": "0.0.30",
     "@types/dotenv": "^4.0.3",
     "@types/koa": "^2.0.46",
     "@types/koa-logger": "^3.1.0",
     "@types/koa-pug": "^3.0.4",
     "@types/koa-router": "^7.0.30",
     "@types/koa-static": "^4.0.0",
+    "@types/koa-views": "^2.0.3",
     "@types/node": "^10.5.3",
     "autoprefixer": "^7.2.5",
     "babel-cli": "^6.26.0",
@@ -42,6 +45,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-0": "^6.24.1",
     "babel-register": "^6.26.0",
+    "copyfiles": "^2.0.0",
     "css-loader": "^0.28.9",
     "debug": "^3.1.0",
     "dotenv": "^5.0.0",
@@ -52,6 +56,7 @@
     "koa-pug": "^3.0.0-2",
     "koa-router": "^7.4.0",
     "koa-static": "^4.0.2",
+    "koa-views": "^6.1.4",
     "lodash": "^4.17.5",
     "npm-run-all": "^4.1.3",
     "postcss-loader": "^2.1.0",
