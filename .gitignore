@@ -1,6 +1,6 @@
-/node_modules/
-dist
-coverage
-.idea
-npm-debug.log
-.env
+.idea/
+.vscode/
+node_modules/
+dist/
+tmp/
+temp/
